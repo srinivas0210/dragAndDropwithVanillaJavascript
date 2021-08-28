@@ -1,0 +1,24 @@
+.home-popover {
+    width: 100%;
+    
+}
+
+.home-popover-innerDiv {
+  display: flex;    
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+}   
+
+.home-popover-left {
+    font-weight: bold;
+}
+.home-popover-right {
+    padding: 8px;
+    background-color: #3d99ce;
+    border-radius: 4px;
+}
+.home-popover-right:hover {
+    cursor: pointer;
+    background-color: #0c70aa;
+}

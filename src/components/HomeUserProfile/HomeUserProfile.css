@@ -1,0 +1,75 @@
+.home-userProfile {
+    width: 100%;
+}
+
+.home-userProfile-innerdiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+}   
+
+.home-userProfile-right {
+    padding: 4px 8px;
+    background-color: #3d99ce;
+    border-radius: 4px;
+}
+.home-userProfile-right:hover {
+    cursor: pointer;
+    background-color: #0c70aa;
+}
+.home-userProfile-left {
+    font-weight: bold;
+}
+
+.popup-open {
+  width: 300px;
+}
+.popup-close {
+  width: 0px;
+}
+
+.sidenav {
+  height: 88%; 
+  width: 30%; 
+  position: fixed; 
+  z-index: 1;
+  bottom: 0;
+  right: 0;
+  background-color: rgb(11, 98, 156); 
+  overflow-x: hidden; 
+  padding: 20px; 
+  transition: width 3s;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.sidenav-innerDiv{
+  position: relative;
+  height: 100%;
+  color:  white
+}
+.home-userProfile-search {
+  color: white !important;  
+}
+.sidenav-text {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidenav-closeIcon {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  cursor: pointer;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+@media (max-width: 500px) {
+  .sidenav {
+      width: 80%;
+      height: 100%; 
+  }
+}
