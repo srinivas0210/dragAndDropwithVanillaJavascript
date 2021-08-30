@@ -1,11 +1,8 @@
 import React from "react";
-// import "./Home.css";
 
 // material imports
-import Card from "@material-ui/core/Card";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
-import { mockValues } from "../../configVariables";
 import SimpleCard from "../SimpleCard/SimpleCard";
 
 interface Task {
@@ -46,24 +43,6 @@ interface TaskContainerProps {
     dragOverTagId: number | null
   ): void;
   onDrop(e: React.MouseEvent, dragdroptaskBoxTitleId: number): void;
-  onTouchMove(
-    e: any,
-    taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
-    indexOfTagWhichIsDragged: number
-  ): void;
-  onTouchEnd(
-    e: any,
-    taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
-    indexOfTagWhichIsDragged: number
-  ): void;
-  onTagMouseEnter(
-    e: any,
-    taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
-    indexOfTagWhichIsDragged: number
-  ): void;
   handleData(data: Task): void;
 }
 
@@ -81,9 +60,6 @@ const TaskContainer: React.FunctionComponent<TaskContainerProps> = ({
   onDragStart,
   onDragOver,
   onDrop,
-  onTouchMove,
-  onTouchEnd,
-  onTagMouseEnter,
   handleData,
 }) => {
   const addTaskTag = (index: number) => (event: React.MouseEvent) => {
@@ -135,9 +111,6 @@ const TaskContainer: React.FunctionComponent<TaskContainerProps> = ({
             dragDropTaskBoxTitleId={dragDropTaskBoxTitleId}
             onDragStart={onDragStart}
             onDragOver={onDragOver}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-            onTagMouseEnter={onTagMouseEnter}
             onDrop={onDrop}
           />
         ))}

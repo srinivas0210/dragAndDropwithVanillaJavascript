@@ -22,7 +22,9 @@ const HomeUserProfile: React.FunctionComponent<HomeUserProfileProps> = (
   return (
     <div className="home-userProfile">
       <div className="home-userProfile-innerdiv">
-        <div className="home-userProfile-left flex">{configVariables.homeUserProfile.title}</div>
+        <div className="home-userProfile-left flex">
+          {configVariables.homeUserProfile.title}
+        </div>
         <div className="home-userProfile-search">
           <TextField
             id="standard-search"
@@ -39,17 +41,16 @@ const HomeUserProfile: React.FunctionComponent<HomeUserProfileProps> = (
           <MoreHorizIcon />
           {configVariables.homeUserProfile.menuText}
         </div>
-        {open && (
-          <div className="sidenav">
-            <div className="sidenav-innerDiv" onClick={() => setOpen(!open)}>
-              <CloseIcon className="sidenav-closeIcon" />
 
-              <div className="sidenav-text">
-               {configVariables.homeUserProfile.comingSoomText}
-              </div>
+        <div className={`sidenav ${open ? "sidenav-open" : "sidenav-close"}`}>
+          <div className="sidenav-innerDiv" onClick={() => setOpen(!open)}>
+            <CloseIcon className="sidenav-closeIcon" />
+
+            <div className="sidenav-text">
+              {configVariables.homeUserProfile.comingSoomText}
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

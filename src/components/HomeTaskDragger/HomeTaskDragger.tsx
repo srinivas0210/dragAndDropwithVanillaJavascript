@@ -4,22 +4,8 @@ import "./HomeTaskDragger.css";
 // external imports
 import { mockValues } from "../../configVariables";
 import TaskContainer from "../TaskContainer/TaskContainer";
-
-interface tagProps {
-  id: number;
-  name: string;
-}
-
-interface Task {
-  [key: string]: {
-    taskStatus: string;
-    tags: {
-      id: number;
-      name: string;
-    }[];
-  };
-}
-
+import {TagProps} from '../../models/TagProps'
+import { Task } from '../../models/Task'
 interface HomeTaskDraggerProps {
   searchValue: string;
 }
@@ -32,12 +18,13 @@ const HomeTaskDragger: React.FunctionComponent<HomeTaskDraggerProps> = ({
 
   const handleData = (newData: Task) => {
     setData(newData);
-    setFilteredData(newData);
+    if(!searchValue.length) {
+      setFilteredData(newData);
+    } 
   };
 
-  const [draggedtag, setDraggedTag] = useState<tagProps | null>(null);
+  const [draggedtag, setDraggedTag] = useState<TagProps | null>(null);
   const [draggedTagIndex, setDraggedTagIndex] = useState<number | null>(null);
-  const [level, setLevel] = useState<number | null>(null);
   const [dragOverTagId, setDragOverTagId] = useState<number | null>(null);
 
   // drag Id's
@@ -67,12 +54,12 @@ const HomeTaskDragger: React.FunctionComponent<HomeTaskDraggerProps> = ({
     } else {
       setFilteredData(data);
     }
-  }, [searchValue]);
+  }, [searchValue,data]);
 
   const onDragStart = (
     e: any,
     taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
+    tagThatWasDragged: TagProps,
     indexOfTagWhichIsDragged: number
   ) => {
     setDragStartTaskBoxTitleId(taskBoxTitleId);
@@ -91,14 +78,13 @@ const HomeTaskDragger: React.FunctionComponent<HomeTaskDraggerProps> = ({
     (e.target as any).scrollIntoViewIfNeeded();
     setDragOverTaskBoxTitleId(dragOverTaskBoxTitleId);
 
-    if (dragOverTagId !== null) setLevel(dragOverTagId);
     if (dragOverTagId !== null) setDragOverTagId(dragOverTagId);
   };
   const onDrop = (e: React.MouseEvent, dragdroptaskBoxTitleId: number) => {
     setDragDropTaskBoxTitleId(dragdroptaskBoxTitleId);
     setDragOverTaskBoxTitleId(null);
     setDragStartTaskBoxTitleId(null);
-    console.log(dragOverTagId);
+
     if (
       dragStartTaskBoxTitleId !== null &&
       draggedtag &&
@@ -121,11 +107,9 @@ const HomeTaskDragger: React.FunctionComponent<HomeTaskDraggerProps> = ({
 
       if (dragStartTaskBoxTitleId === dragdroptaskBoxTitleId) {
         if (!dragOverTagId) {
-          console.log("abc");
           handleData(data);
           return;
         }
-        console.log("aaa", dragOverTagId);
         const TagsStructurewhenDragPlaceAndDropPlaceAreSame = [
           ...data[dragStartTaskBoxTitleId].tags,
         ];
@@ -184,44 +168,13 @@ const HomeTaskDragger: React.FunctionComponent<HomeTaskDraggerProps> = ({
     }
 
     setDragOverTagId(null);
-    setDraggedTag(null)
+    setDraggedTag(null);
   };
-  const onTouchMove = (
-    e: any,
-    taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
-    indexOfTagWhichIsDragged: number
-  ) => {};
-  const onTouchEnd = (
-    e: any,
-    taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
-    indexOfTagWhichIsDragged: number
-  ) => {};
-
-  const onMouseUp = (e: React.MouseEvent) => {
-    setDragDropTaskBoxTitleId(null);
-    setDragOverTaskBoxTitleId(null);
-    setDragStartTaskBoxTitleId(null);
-
-    console.log("what is this?");
-  };
-
-  const onTagMouseEnter = (
-    e: any,
-    taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
-    indexOfTagWhichIsDragged: number
-  ) => {
-    if (draggedtag) {
-      console.log("sskks");
-    }
-  };
-
+  
 
   return (
     <div className="home-tasksDragger">
-      <div className="innerDiv" >
+      <div className="innerDiv">
         {Object.entries(filteredData).map(([taskKey, ts], index) => (
           <TaskContainer
             taskKey={taskKey}
@@ -237,9 +190,6 @@ const HomeTaskDragger: React.FunctionComponent<HomeTaskDraggerProps> = ({
             onDragStart={onDragStart}
             onDragOver={onDragOver}
             onDrop={onDrop}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
-            onTagMouseEnter={onTagMouseEnter}
             handleData={handleData}
           />
         ))}

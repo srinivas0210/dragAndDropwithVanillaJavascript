@@ -28,24 +28,6 @@ interface SimpleCardProps {
     dragOverTaskBoxTitleId: number,
     dragOverTagId: number | null
   ): void;
-    onTouchMove(
-    e: any,
-    taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
-    indexOfTagWhichIsDragged: number
-  ): void;
-  onTouchEnd(
-    e: any,
-    taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
-    indexOfTagWhichIsDragged: number
-  ): void;
-  onTagMouseEnter(
-    e: any,
-    taskBoxTitleId: number,
-    tagThatWasDragged: tagProps,
-    indexOfTagWhichIsDragged: number
-  ): void;
   onDrop(e: React.MouseEvent, dragdroptaskBoxTitleId: number): void;
 }
 
@@ -60,9 +42,6 @@ const SimpleCard: React.FunctionComponent<SimpleCardProps> = ({
   dragDropTaskBoxTitleId,
   onDragStart,
   onDragOver,
-  onTouchMove,
-  onTouchEnd,
-  onTagMouseEnter,
   onDrop,
 }) => {
   return (
@@ -82,9 +61,6 @@ const SimpleCard: React.FunctionComponent<SimpleCardProps> = ({
       }`}
       onDragStart={(e) => onDragStart(e, index, tag, tagIndex)}
       onDragOver={(e) => onDragOver(e, index, tagIndex)}
-      onTouchMove ={(e)=> onTouchMove(e,index, tag, tagIndex)}
-      onTouchEnd={(e)=> onTouchEnd(e,index, tag, tagIndex)}
-      onMouseEnter={(e)=> onTagMouseEnter(e,index, tag, tagIndex)}
     >
       {tag.name}
     </Card>

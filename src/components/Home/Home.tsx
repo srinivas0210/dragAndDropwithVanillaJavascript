@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import './Home.css'
 
 import HomeHeader from '../HomeHeader/HomeHeader';
@@ -6,7 +6,6 @@ import HomeAppBar from '../HomeAppBar/HomeAppBar';
 import HomeUserProfile from '../HomeUserProfile/HomeUserProfile';
 import HomeTaskDragger from '../HomeTaskDragger/HomeTaskDragger';
 import HomePopover from '../HomePopover/HomePopover';
-import { useState } from 'react';
 
 const Home: React.FunctionComponent = () => {
     const [searchValue,setSearchValue] = useState('')
@@ -26,7 +25,7 @@ const Home: React.FunctionComponent = () => {
                 <HomeUserProfile searchValue={searchValue} handleSearchChange={handleSearchChange} />
             </div>
             <div className="popover flex">
-                <HomePopover />
+                <HomePopover searchValue={searchValue} handleSearchChange={handleSearchChange}/>
             </div>
             <div className="flex tasksDragger">
                 <HomeTaskDragger searchValue={searchValue}/>
