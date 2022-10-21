@@ -56,7 +56,7 @@ export const configVariables = {
     login: 'Login'
   },
   homeAppBar: {
-    text: 'Visually collaborate with anyone, anywhere.'
+    text: 'Visually collaborate with anyone, anywhere and everywhere. '
   },
   homeUserProfile: {
     title: 'Kanban Board',
